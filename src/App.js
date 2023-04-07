@@ -2,15 +2,20 @@ import logo from "./logo.svg";
 import "./App.css";
 import NavBarWea from "./components/NavBarWea";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WeatherShow from "./components/WeatherShow";
+import NameCity from "./components/NameCity";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <NavBarWea />
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <NavBarWea />
+      <Routes>
+        <Route path="/" element={<WeatherShow />} />
+
+        <Route path="/:nameCity/:lat/:lon" element={<NameCity />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
