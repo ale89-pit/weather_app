@@ -28,9 +28,10 @@ const CardPref = () => {
 
     return (
 
-        <Container>
-            {cityPref.map((city) => (
-                <PrefHome api={`https://api.openweathermap.org/data/2.5/weather?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${Key}`} />
+        <Container className="pt-5 d-flex">
+            {cityPref.map((city, i) => (
+                <>
+                    <PrefHome key={i} api={`https://api.openweathermap.org/data/2.5/weather?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${Key}`} /></>
             ))}
         </Container>)
 

@@ -12,11 +12,15 @@ function App() {
   return (
     <BrowserRouter>
       <NavBarWea />
-      <CardPref />
       <Routes>
-        <Route path="/" element={<WeatherShow />} />
-        {/* <Route path="/" element={ } /> */}
+        <Route path="/" element={<CardPref />}/>
+      </Routes>
+      <Routes>
+        <Route path="/" element={<WeatherShow /> } />
+       
+        
         <Route path="/:nameCity/:lat/:lon" element={<NameCity />}></Route>
+        {/* <Route path="/" element={} /> */}
       </Routes>
      
     </BrowserRouter>
