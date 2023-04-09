@@ -2,7 +2,9 @@ const initialState = {
   weather: {
     content: [],
     loading: false,
-  },
+  }, preference:{
+    content:[]
+  }
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -15,6 +17,13 @@ const mainReducer = (state = initialState, action) => {
           loading: true,
         },
       };
+      case "ADD_PREF":
+        return{
+          ...state,
+          preference:{
+            content: [...state.preference.content,action.payload]
+          }
+        }
     default:
       return state;
   }
