@@ -7,22 +7,24 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import WeatherShow from "./components/WeatherShow";
 import NameCity from "./components/NameCity";
 import CardPref from "./components/CardPref";
+import Preference from "./components/Preference";
+
 
 function App() {
   return (
     <BrowserRouter>
       <NavBarWea />
+      <WeatherShow /> 
+      <Routes>
+        {/* <Route path="/" element={} /> */}
+       
+        
+        <Route path="/:nameCity/:lat/:lon/" element={<NameCity />}/>
+       
+      </Routes>
       <Routes>
         <Route path="/" element={<CardPref />}/>
       </Routes>
-      <Routes>
-        <Route path="/" element={<WeatherShow /> } />
-       
-        
-        <Route path="/:nameCity/:lat/:lon" element={<NameCity />}></Route>
-        {/* <Route path="/" element={} /> */}
-      </Routes>
-     
     </BrowserRouter>
   );
 }

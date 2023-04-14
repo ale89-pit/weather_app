@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 
 
 const Forcast = (props) => {
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -27,6 +28,7 @@ const Forcast = (props) => {
     let Key = "b393dd8cb61c7b8713fdf8753c9dc653"
     const API = `http://api.openweathermap.org/data/2.5/forecast?lat=${props.lon}&lon=${props.lat}&appid=${Key}`
     const [day, setDay] = useState([])
+    const [dayName, setDayName] = useState("")
     const getforcast = async () => {
 
 
@@ -45,14 +47,15 @@ const Forcast = (props) => {
 
     }
 
-    const showName = (string) => {
-        let d = new Date(string)
+    // const showName = (string) => {
+    //     let d = new Date(string)
 
-        const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-        let dayname = weekday[d.getDay()];
+    //     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    //     // let dayname = 
+    //     setDayName(weekday[d.getDay()])
 
+    // }
 
-    }
 
 
     useEffect(() => {
@@ -75,7 +78,7 @@ const Forcast = (props) => {
                     src={`https://openweathermap.org/img/w/${weaD.weather[0].icon}.png`}
                     alt="First slide"
                 />
-                <h5>{showName(weaD.dt_txt)}</h5>
+                <h5>{weaD.dt_txt}</h5>
                 <h3>{Math.trunc((weaD.main.temp - 273))}</h3>
                 <p>{weaD.weather[0].description}</p>
 

@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 
 const CardPref = () => {
     let Key = "b393dd8cb61c7b8713fdf8753c9dc653"
-    const cityPref = useSelector((state) => state.preference.content)
+    const cityPref = useSelector((state) => state.preference.content.singlePreference)
+    console.log(cityPref)
 
 
 
@@ -26,15 +27,18 @@ const CardPref = () => {
     }, [cityPref])
 
 
-    return (
-
+    return (<>
+        <h2 className='text-center'>Your city weather</h2>
         <Container className="pt-5 d-flex">
-            {cityPref.map((city, i) => (
-                <>
-                    <PrefHome key={i} api={`https://api.openweathermap.org/data/2.5/weather?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${Key}`} /></>
-            ))}
-        </Container>)
 
+            {cityPref ? cityPref.map((city, i) => (
+                <>
+                    <PrefHome key={i} api={`https://api.openweathermap.org/data/2.5/weather?lat=${city.coord.lat}&lon=${city.coord.lon}&appid=${Key}`} index={i} /></>
+            ))
+                : <h1>Add you city here</h1>
+            }
+        </Container>
+    </>)
 }
 
 // cityPref.map((city) => {

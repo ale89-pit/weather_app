@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { Container, ListGroup, Row, Col } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom"
 
 
 const WeatherShow = () => {
+  const dispatch = useDispatch()
 
   // const [lon, setLon] = useState('')
   //   const [lat, setLat] = useState('')
@@ -17,7 +18,7 @@ const WeatherShow = () => {
   //     const Key = "b393dd8cb61c7b8713fdf8753c9dc653"
   const cityResult = useSelector((state) => state.weather.content[0])
   const loading = useSelector((state) => state.weather.loading)
-
+  const state = useSelector((state) => state.preference)
   useEffect(() => {
 
   }, [])
@@ -35,7 +36,7 @@ const WeatherShow = () => {
           <ListGroup className="d-flex">
 
             {loading ? cityResult.map((city, i) => (
-              <Link key={i} to={`/${city.name}/${city.lon}/${city.lat}`}>
+              <Link key={i} to={`/${city.name}/${city.lon}/${city.lat}`} >
                 <ListGroup.Item className="ps-2" >
                   <h4>{city.name}</h4><span>{city.country}</span> <span>{city.state}</span>
 

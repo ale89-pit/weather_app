@@ -3,7 +3,10 @@ const initialState = {
     content: [],
     loading: false,
   }, preference:{
-    content:[]
+    content:{
+      singlePreference:[],
+      selected : false,
+    }
   }
 };
 
@@ -21,9 +24,21 @@ const mainReducer = (state = initialState, action) => {
         return{
           ...state,
           preference:{
-            content: [...state.preference.content,action.payload]
+            content: {
+              singlePreference:[...state.preference.content.singlePreference,action.payload],
+              selected : true,}
           }
-        }
+        };
+        case "REMOVE":
+          return {
+          ...state,
+          preference:{
+            content:{
+              singlePreference:[...state.preference.content.singlePreference.filter((el, i) => i !== action.payload)],
+              selected : false
+            },
+          }
+          }
     default:
       return state;
   }

@@ -68,10 +68,11 @@ const NavBarWea = () => {
               <Link to="/" onClick={(() => {
                 dispatch({
                   type: "ADD_CITY",
-                  payload: []
+                  payload: [],
+                  loading: false,
                 })
               })} className="nav-link">Home</Link>
-              <Link to="/preference" className='nav-link'>City Preference </Link>
+
 
             </Nav>
             <Form className="d-flex" onSubmit={citySerch}>

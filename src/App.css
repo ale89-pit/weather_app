@@ -1,11 +1,16 @@
 
-body{
+body,html{
   height: 100%;
   max-height: 100vh;
   
   
-  background-color:rgb(60, 42, 223)!important;
+  background-image: url("https://png.pngtree.com/background/20211216/original/pngtree-weather-blue-sky-daytime-white-clouds-clear-sky-picture-image_1507468.jpg")!important;
+  background-repeat:repeat-y;
+  background-size:cover ;
 }
 .card img{
   width: 100%;
+}
+a:link, a:visited,a:active{
+  text-decoration: none;
 }
