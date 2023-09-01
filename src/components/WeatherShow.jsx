@@ -19,10 +19,13 @@ const WeatherShow = () => {
   const cityResult = useSelector((state) => state.weather.content[0])
   const loading = useSelector((state) => state.weather.loading)
   const state = useSelector((state) => state.preference)
+
   useEffect(() => {
 
   }, [])
+  useEffect(() => {
 
+  }, [cityResult])
 
 
 
@@ -36,9 +39,22 @@ const WeatherShow = () => {
           <ListGroup className="d-flex">
 
             {loading ? cityResult.map((city, i) => (
-              <Link key={i} to={`/${city.name}/${city.lon}/${city.lat}`} >
-                <ListGroup.Item className="ps-2" >
-                  <h4>{city.name}</h4><span>{city.country}</span> <span>{city.state}</span>
+              <Link key={i} to={`/${city.LocalizedName}/${city.GeoPosition.Latitude}/${city.GeoPosition.Longitude}/${city.Key}`} >
+                <ListGroup.Item className="ps-2">
+                  <h4>{city.LocalizedName}</h4>
+                  <span className="mx-2">{city.AdministrativeArea.LocalizedType} : {city.AdministrativeArea.LocalizedName + ", "}</span>
+                  {/* <br /> */}
+                  {
+                    city.SupplementalAdminAreas.map((s, i) => (
+                      <span key={i} >
+                        {i > 0 ? ' - ' : ''}
+                        {s.LocalizedName}
+                      </span>
+                    ))
+                  }<span>, </span>
+                  {/* {city.SupplementalAdminAreas.map((s, i) => i > 1 ? <span>{s.LocalizedName.concat(", ")}</span> : <span>{s.LocalizedName}</span>)} */}
+                  {/* <br /> */}
+                  <span >{city.Country.LocalizedName}</span> - <span>{city.Region.LocalizedName}</span>
 
                 </ListGroup.Item>
               </Link>

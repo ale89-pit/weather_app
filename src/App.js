@@ -9,21 +9,16 @@ import NameCity from "./components/NameCity";
 import CardPref from "./components/CardPref";
 import Preference from "./components/Preference";
 
-
 function App() {
   return (
     <BrowserRouter>
       <NavBarWea />
-      <WeatherShow /> 
+
       <Routes>
-        {/* <Route path="/" element={} /> */}
-       
-        
-        <Route path="/:nameCity/:lat/:lon/" element={<NameCity />}/>
-       
-      </Routes>
-      <Routes>
-        <Route path="/" element={<CardPref />}/>
+        <Route path="/" element={<WeatherShow />} />
+        <Route path="/" element={<CardPref />} />
+
+        <Route path="/:nameCity/:lat/:lon/:key" element={<NameCity />} />
       </Routes>
     </BrowserRouter>
   );

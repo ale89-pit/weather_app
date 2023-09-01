@@ -6,14 +6,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const NavBarWea = () => {
   const [query, setQuery] = useState('')
 
   const city = useSelector((state) => state.weather)
   const dispatch = useDispatch()
-
+  const location = useLocation()
+  const navigate = useNavigate()
+  const API_KEY_WEATHER2 = "Mu2uvB1T1eAvbZkcutyUTDg7TJR2GJLc"
+  const API_URL_WEATHER_GEOCODING2 = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${API_KEY_WEATHER2}&q=${query}&language=it`
 
 
 
@@ -48,6 +51,34 @@ const NavBarWea = () => {
     }
 
   }
+
+  const citySerch2 = async (e) => {
+    e.preventDefault()
+    if (location !== "/") {
+      navigate('/')
+    }
+
+
+    try {
+      let resp = await fetch(API_URL_WEATHER_GEOCODING2)
+      if (resp.ok) {
+        let data = await resp.json()
+        console.log(data)
+        dispatch({
+          type: "ADD_CITY",
+          payload: data,
+
+        })
+        setQuery('')
+
+
+
+      }
+    } catch (error) {
+
+    }
+
+  }
   useEffect(() => {
 
   }, [])
@@ -57,7 +88,7 @@ const NavBarWea = () => {
     <>
       <Navbar expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+          <Navbar.Brand className='cursor-pointer' onClick={(() => navigate("/"))}>Weather</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -65,17 +96,19 @@ const NavBarWea = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Link to="/" onClick={(() => {
-                dispatch({
-                  type: "ADD_CITY",
-                  payload: [],
-                  loading: false,
-                })
-              })} className="nav-link">Home</Link>
+              <Link to="/"
+                // onClick={(() => {
+                //   dispatch({
+                //     type: "ADD_CITY",
+                //     payload: [],
+                //     loading: false,
+                //   })
+                // })}
+                className="nav-link">Home</Link>
 
 
             </Nav>
-            <Form className="d-flex" onSubmit={citySerch}>
+            <Form className="d-flex" onSubmit={citySerch2}>
               <Form.Control
                 type="search"
                 placeholder="Search"
