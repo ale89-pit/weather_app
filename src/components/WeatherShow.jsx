@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Container, ListGroup, Row, Col } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import ResultSearch from "./ResultSearch"
 
 
 
@@ -31,43 +32,14 @@ const WeatherShow = () => {
 
   return (
 
-    <Container>
+    <Container >
       <Row>
-        <Col>
+        <Col className="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-6 mx-auto">
 
+          {loading && cityResult.length > 0 ? cityResult.map((city, i) => <ResultSearch city={city} key={i} />) :
 
-          <ListGroup className="d-flex">
+            <p>Nessun risultato trovato</p>}
 
-            {loading ? cityResult.map((city, i) => (
-              <Link key={i} to={`/${city.LocalizedName}/${city.GeoPosition.Latitude}/${city.GeoPosition.Longitude}/${city.Key}`} >
-                <ListGroup.Item className="ps-2">
-                  <h4>{city.LocalizedName}</h4>
-                  <span className="mx-2">{city.AdministrativeArea.LocalizedType} : {city.AdministrativeArea.LocalizedName + ", "}</span>
-                  {/* <br /> */}
-                  {
-                    city.SupplementalAdminAreas.map((s, i) => (
-                      <span key={i} >
-                        {i > 0 ? ' - ' : ''}
-                        {s.LocalizedName}
-                      </span>
-                    ))
-                  }<span>, </span>
-                  {/* {city.SupplementalAdminAreas.map((s, i) => i > 1 ? <span>{s.LocalizedName.concat(", ")}</span> : <span>{s.LocalizedName}</span>)} */}
-                  {/* <br /> */}
-                  <span >{city.Country.LocalizedName}</span> - <span>{city.Region.LocalizedName}</span>
-
-                </ListGroup.Item>
-              </Link>
-
-
-            )
-
-            )
-              : null
-            }
-
-
-          </ListGroup>
         </Col>
       </Row>
 

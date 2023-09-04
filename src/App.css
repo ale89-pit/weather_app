@@ -1,16 +1,65 @@
 body, html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   height: 100%;
   max-height: 100vh;
   background-image: url("https://png.pngtree.com/background/20211216/original/pngtree-weather-blue-sky-daytime-white-clouds-clear-sky-picture-image_1507468.jpg") !important;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card img {
-  width: 100%;
+  width: 1 em;
 }
 
 a:link, a:visited, a:active {
   text-decoration: none;
-}/*# sourceMappingURL=App.css.map */
+}
+
+.navbar-brand {
+  cursor: pointer;
+}
+
+/* Stili di base */
+.font-size {
+  font-weight: 500 !important;
+}
+
+/* Stili per il breakpoint mobile */
+@media (max-width: 767px) {
+  .font-size {
+    font-size: 0.9em !important;
+  }
+}
+/* Stili per il breakpoint tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .font-size {
+    font-size: 1em !important;
+  }
+}
+/* Stili per il breakpoint desktop */
+@media (min-width: 1024px) {
+  .font-size {
+    font-size: 1.2em !important;
+  }
+}
+.btn {
+  font-size: 0.8em !important;
+  font-weight: 500 !important;
+}
+
+.list-group {
+  margin: 0.3em 0;
+}
+.list-group div {
+  margin: 0 1em;
+}
+
+.badge {
+  margin: 2px;
+}
+
+/*# sourceMappingURL=App.css.map */

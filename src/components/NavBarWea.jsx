@@ -69,7 +69,7 @@ const NavBarWea = () => {
           payload: data,
 
         })
-        setQuery('')
+        // setQuery('')
 
 
 
