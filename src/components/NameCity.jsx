@@ -157,7 +157,7 @@ const NameCity = () => {
             </Card> 
 */}
             <Row>
-                <Col className="col-12 col-sm-12 col-md-8 col-lg-12 col-xl-12 mx-auto">
+                <Col className="col-12 mx-auto">
                     {loading && weather ? <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner> : <CardResultSearch weather={weather} />}

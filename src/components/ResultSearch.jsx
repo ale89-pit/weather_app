@@ -7,7 +7,7 @@ const ResultSearch = (props) => {
     ;
 
     return (
-        <ListGroup key={props.key} className="d-flex w-xs-100 w-md-75 w-lg-50">
+        <ListGroup key={props.key} className="d-flex w-xs-100 w-md-75 w-lg-75">
 
 
 

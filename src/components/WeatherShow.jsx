@@ -34,7 +34,7 @@ const WeatherShow = () => {
 
     <Container >
       <Row>
-        <Col className="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-6 mx-auto">
+        <Col className="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
 
           {loading && cityResult.length > 0 ? cityResult.map((city, i) => <ResultSearch city={city} key={i} />) :
 

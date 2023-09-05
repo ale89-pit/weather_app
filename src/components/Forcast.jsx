@@ -7,6 +7,7 @@ import { IoThermometerOutline } from "react-icons/io5";
 import { BiWind } from "react-icons/bi";
 import { FiCompass } from "react-icons/fi";
 import { Card } from "react-bootstrap";
+import { utcToZonedTime } from "date-fns-tz";
 
 
 
@@ -15,6 +16,7 @@ const Forcast = (props) => {
 
     const API_FORECASTS_5_DAYS = `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${props.id}?apikey=%09Mu2uvB1T1eAvbZkcutyUTDg7TJR2GJLc&language=it&metric=true&details=true`
     const [day, setDay] = useState([])
+    const timezone = localStorage.getItem("timezone")
 
     const responsive = {
         superLargeDesktop: {
@@ -23,11 +25,15 @@ const Forcast = (props) => {
             items: 5
         },
         desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 3000, min: 1200 },
+            items: 4
+        },
+        screen: {
+            breakpoint: { max: 1200, min: 768 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 1024, min: 464 },
+            breakpoint: { max: 768, min: 464 },
             items: 2
         },
         mobile: {
@@ -85,11 +91,11 @@ const Forcast = (props) => {
 
     return (
 
-        <Carousel responsive={responsive} className="text-center">
+        <Carousel responsive={responsive} className="text-center my-4">
             {day.map((weaD, i) =>
             (
                 <>
-                    <div key={i} className="mx-1 bg-light rounded p-3 border border-3">
+                    <div key={i} className="mx-1 bg-light rounded p-3 border border-3 ">
                         <Card.Title className="text-center display-5 my-2"></Card.Title>
 
 
@@ -98,24 +104,24 @@ const Forcast = (props) => {
                         <Card.Title className="p-3 text-center text-secondary opacity-50">{format(new Date(weaD.Date), "EEEE  dd MMMM yyyy")}</Card.Title>
                         <div className=" w-100 m-2">
                             <div>
-                                <p>{weaD.Day.IconPhrase
+                                <p className="m-0 p-0">{weaD.Day.IconPhrase
                                 }</p>
-                                <img className="w-50 mt-2"
+                                <img className="w-50"
 
                                     // src="https://developer.accuweather.com/sites/default/files/01-s.png"
                                     src={`https://developer.accuweather.com/sites/default/files/${weaD.Day.Icon < 10 ? "0" + weaD.Day.Icon : weaD.Day.Icon}-s.png`}
                                 />
                             </div>
-                            <div className=" font-weight-bold">
+                            <div className=" font-weight-bold font-size">
                                 {/* {actual} */}
 
-                                <p><IoThermometerOutline /> Max:
+                                <p className="m-0 p-0"><IoThermometerOutline /> Max:
                                     {weaD.Temperature.Maximum.Value}°C
                                 </p>
-                                <p><IoThermometerOutline /> Min:
+                                <p className="m-0 p-0"><IoThermometerOutline /> Min:
                                     {weaD.Temperature.Minimum.Value}°C
                                 </p>
-                                <p><BiWind /> Wind:
+                                <p className="m-0 p-0"><BiWind /> Wind:
                                     {weaD.Day.Wind.Speed.Value} {weaD.Day.Wind.Speed.Unit}
                                     <FiCompass />
                                     {weaD.Day.Wind.Direction.Localized}
@@ -131,35 +137,36 @@ const Forcast = (props) => {
 
 
                         <div className=" m-2">
-                            <div className="w-50 d-flex justify-content-center align-items-center">
+                            <div className="w-100 d-flex justify-content-center align-items-center">
 
                                 <img className=" mt-2 display-6"
 
                                     // src="https://developer.accuweather.com/sites/default/files/01-s.png"
-                                    src={`https://developer.accuweather.com/sites/default/files/${weaD.Day.Icon < 10 ? "0" + weaD.Day.Icon : weaD.Day.Icon}-s.png`}
+                                    src={`https://developer.accuweather.com/sites/default/files/01-s.png`}
                                 />
 
-                                <div className="d-flex">
-                                    <span>Sorge :
-                                        {format(new Date(weaD.Sun.Rise), "HH:mm")}
+                                <div className="d-flex flex-column font-size text-secondary">
+                                    <span className="w-100">Sorge : {format(utcToZonedTime(new Date(weaD.Sun.Rise), timezone), "HH:mm")}
+
                                     </span>
-                                    <span>Tramonta :
-                                        {format(new Date(weaD.Sun.Set), "HH:mm")}
+                                    <span>Tramonta :  {format(utcToZonedTime(new Date(weaD.Sun.Set), timezone), "HH:mm")}
+
                                     </span>
                                 </div>
                             </div>
-                            <div className="w-50 d-flex justify-content-center align-items-center">
+                            <div className="w-100 d-flex justify-content-center align-items-center">
 
-                                <img className=" mt-2"
+                                <img className="  font-size text-secondary"
                                     // src="https://developer.accuweather.com/sites/default/files/34-s.png"
-                                    src={`https://developer.accuweather.com/sites/default/files/${weaD.Night.Icon < 10 ? "0" + weaD.Night.Icon : weaD.Night.Icon}-s.png`}
+                                    src={`https://developer.accuweather.com/sites/default/files/33-s.png`}
                                 />
-                                <div className="d-flex">
+                                <div className="d-flex flex-column font-size text-secondary">
                                     <span>Sorge :
-                                        {format(new Date(weaD.Moon.Rise), "HH:mm")}
+                                        {format(utcToZonedTime(new Date(weaD.Moon.Rise), timezone), "HH:mm")}
+                                        {/* format(new Date(weaD.Moon.Rise), "HH:mm")} */}
                                     </span>
                                     <span>Tramonta :
-                                        {format(new Date(weaD.Moon.Set), "HH:mm")}
+                                        {format(utcToZonedTime(new Date(weaD.Moon.Set), timezone), "HH:mm")}
                                     </span>
                                 </div>
                             </div>

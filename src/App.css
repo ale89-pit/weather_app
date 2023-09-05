@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,7 +16,9 @@ body, html {
   width: 1 em;
 }
 
-a:link, a:visited, a:active {
+a:link,
+a:visited,
+a:active {
   text-decoration: none;
 }
 
@@ -31,19 +34,19 @@ a:link, a:visited, a:active {
 /* Stili per il breakpoint mobile */
 @media (max-width: 767px) {
   .font-size {
-    font-size: 0.9em !important;
+    font-size: 0.8em !important;
   }
 }
 /* Stili per il breakpoint tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
   .font-size {
-    font-size: 1em !important;
+    font-size: 0.9em !important;
   }
 }
 /* Stili per il breakpoint desktop */
 @media (min-width: 1024px) {
   .font-size {
-    font-size: 1.2em !important;
+    font-size: 1em !important;
   }
 }
 .btn {
@@ -54,6 +57,7 @@ a:link, a:visited, a:active {
 .list-group {
   margin: 0.3em 0;
 }
+
 .list-group div {
   margin: 0 1em;
 }
@@ -62,4 +66,7 @@ a:link, a:visited, a:active {
   margin: 2px;
 }
 
-/*# sourceMappingURL=App.css.map */
+.max-height {
+  max-height: 300px;
+  margin-bottom: 10%;
+}/*# sourceMappingURL=App.css.map */
