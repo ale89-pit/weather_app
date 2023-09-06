@@ -66,27 +66,27 @@ const PrefHome = (props) => {
 
             {!loadCity && !loadWea &&
                 <Card className="m-2 cardHome ">
-                    <Card.Title className="text-center shadow-3">{city[0].LocalizedName}</Card.Title>
-                    <div className="d-flex">
+                    <p className="align-self-center mx-auto shadow-3">{city[0].LocalizedName}</p>
+                    <div className="d-flex justify-content-center align-items-center">
                         <Link to={`/${city[0].LocalizedName}/${city[0].GeoPosition.Latitude}/${city[0].GeoPosition.Longitude}/${props.id}`} >
-                            <div>
+                            <div className="d-flex justify-content-center align-items-center">
 
 
 
-                                <Card.Img src={`https://developer.accuweather.com/sites/default/files/${wea.DailyForecasts[0].Day.Icon < 10 ? "0" + wea.DailyForecasts[0].Day.Icon : wea.DailyForecasts[0].Day.Icon}-s.png`} />
+                                <img src={`https://developer.accuweather.com/sites/default/files/${wea.DailyForecasts[0].Day.Icon < 10 ? "0" + wea.DailyForecasts[0].Day.Icon : wea.DailyForecasts[0].Day.Icon}-s.png`} />
 
 
                             </div>
-                            <div className="font-size">
-
-                                <Card.Body>
-                                    <Card.Text className="text-dark"> {wea.DailyForecasts[0].Day.IconPhrase}</Card.Text>
-
-                                    <Card.Text className="text-dark"> Min : {wea.DailyForecasts[0].Temperature.Minimum.Value}</Card.Text>
-                                    <Card.Text className="text-dark">Max : {wea.DailyForecasts[0].Temperature.Maximum.Value}</Card.Text>
+                            <div className="font-size max-height-prefer d-flex flex-column justify-content-center align-items-center">
 
 
-                                </Card.Body>
+                                <p className="text-dark text-center"> {wea.DailyForecasts[0].Day.IconPhrase}</p>
+                                <span>
+                                    <p className="text-dark"> Min : {wea.DailyForecasts[0].Temperature.Minimum.Value} °C</p>
+                                    <p className="text-dark">Max : {wea.DailyForecasts[0].Temperature.Maximum.Value} °C</p>
+                                </span>
+
+
                             </div>
                         </Link>
                         {/* <Icon.StarFill onClick={(() => {
@@ -103,7 +103,7 @@ const PrefHome = (props) => {
 
             }
 
-        </Col>
+        </Col >
 
     )
 }

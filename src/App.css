@@ -69,4 +69,8 @@ a:active {
 .max-height {
   max-height: 300px;
   margin-bottom: 10%;
+}
+
+.max-height-prefer {
+  max-height: 150px;
 }/*# sourceMappingURL=App.css.map */

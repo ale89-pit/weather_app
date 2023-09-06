@@ -22,10 +22,11 @@ const CardResultSearch = ({ weather }) => {
     const KEY = params.key
 
     const timezone = localStorage.getItem("timezone")
-    let sunRise = new Date(utcToZonedTime(weather.Sun.Rise, timezone))
-    let sunSet = new Date(utcToZonedTime(weather.Sun.Set, timezone))
-    let moonRise = new Date(utcToZonedTime(weather.Moon.Rise, timezone))
-    let moonSet = new Date(utcToZonedTime(weather.Moon.Set, timezone))
+    let sunRise = weather.Sun.Rise !== null ? new Date(utcToZonedTime(weather.Sun.Rise, timezone)) : null
+    let sunSet = weather.Sun.Set !== null ? new Date(utcToZonedTime(weather.Sun.Set, timezone)) : null
+    let moonRise = weather.Moon.Rise !== null ? new Date(utcToZonedTime(weather.Moon.Rise, timezone)) : null
+    let moonSet = weather.Moon.Set !== null ? new Date(utcToZonedTime(weather.Moon.Set, timezone)) : null
+    console.log(moonRise)
 
 
     return (
@@ -39,7 +40,7 @@ const CardResultSearch = ({ weather }) => {
                 <Card.Title className="p-3 text-center text-secondary opacity-50">{format(new Date(weather.Date), "EEEE  dd MMMM yyyy")}</Card.Title>
                 <Row className="d-flex ">
                     <Col xs={12} md={4} className="d-flex flex-column justify-content-center align-items-center mx-auto">
-                        <p className="align-self-center fs-3">{weather.Day.IconPhrase}</p>
+                        <p className="align-self-center fs-3 shadow-3">{weather.Day.IconPhrase}</p>
                         <div className="d-flex justify-content-center align-items-start">
                             <img className="w-100 mt-2"
 
@@ -84,11 +85,11 @@ const CardResultSearch = ({ weather }) => {
 
                         <div className="d-flex gap-2 font-size text-secondary">
                             <span>
-                                Sorge {format(sunRise, "HH:mm", { timezone })}
+                                Sorge {(sunRise !== null) ? format(sunRise, "HH:mm", { timezone }) : ""}
                                 {/* Rise {format(new Date(weather.Sun.EpochRise), "HH:mm")} */}
                             </span>
                             <br />
-                            <span>Tramonta {format(sunSet, "HH:mm", { timezone })}
+                            <span>Tramonta {(sunSet !== null) ? format(sunSet, "HH:mm", { timezone }) : ""}
                             </span>
                         </div>
                     </div>
@@ -99,10 +100,10 @@ const CardResultSearch = ({ weather }) => {
                             src={`https://developer.accuweather.com/sites/default/files/33-s.png`}
                         />
                         <div className="d-flex gap-2 font-size text-secondary">
-                            <span>Sorge {format(moonRise, "HH:mm", { timezone })}
+                            <span>Sorge {moonRise !== null ? format(moonRise, "HH:mm", { timezone }) : ""}
                             </span>
                             <br />
-                            <span>Tramonta: {format(moonSet, "HH:mm", { timezone })}
+                            <span>Tramonta: {moonSet !== null ? format(moonSet, "HH:mm", { timezone }) : ""}
                             </span>
                         </div>
                     </div>
