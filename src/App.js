@@ -16,9 +16,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<WeatherShow />} />
-        <Route path="/" element={<CardPref />} />
-
         <Route path="/:nameCity/:lat/:lon/:key" element={<NameCity />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<CardPref />} />
       </Routes>
     </BrowserRouter>
   );

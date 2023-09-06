@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Card } from "react-bootstrap"
+import { Card, Col } from "react-bootstrap"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
@@ -9,25 +9,37 @@ import * as Icon from 'react-bootstrap-icons';
 
 const PrefHome = (props) => {
     const preference = useSelector((state) => state.preference.content)
+    const [city, setcity] = useState([])
+    const [loadCity, setLoadCity] = useState(true)
     const [wea, setWea] = useState([])
+    const [loadWea, setLoadWea] = useState(true)
     const dispatch = useDispatch()
     const [selected, setSelected] = useState(true)
-    const index = props.index
-    console.log(index)
-    useEffect(() => {
-        getWeat()
-        console.log("PrefHome")
 
-        console.log(wea)
-    }, [])
+
     const getWeat = async () => {
         try {
             let resp = await fetch(props.api)
             if (resp.ok) {
                 let data = await resp.json()
-                setWea([data])
+                setWea(data)
+                setLoadWea(false)
+                console.log(data)
+            }
+        } catch (error) {
 
-                console.log()
+        }
+
+
+    }
+    const getcity = async () => {
+        try {
+            let resp = await fetch(`http://dataservice.accuweather.com/locations/v1/${props.id}?apikey=Mu2uvB1T1eAvbZkcutyUTDg7TJR2GJLc&language=it&details=false`)
+            if (resp.ok) {
+                let data = await resp.json()
+                setcity([data])
+                setLoadCity(false)
+                console.log(data)
             }
         } catch (error) {
 
@@ -35,55 +47,63 @@ const PrefHome = (props) => {
 
     }
     useEffect(() => {
-
-    }, [wea, preference.length])
+        getWeat()
+        getcity()
+        console.log(city)
+        console.log(wea)
+    }, [])
+    useEffect(() => {
+        console.log(city)
+        console.log(wea)
+    }, [preference.length])
 
 
 
 
     return (
-        wea.map((w, i) => {
-            console.log(w)
-            return (
-                <Card className="m-2 cardHome " key={i} >
-                    <Card.Title className="text-center shadow-3">{w.name}</Card.Title>
+
+        <Col xs={12} sm={8} md={4} xl={2}>
+
+            {!loadCity && !loadWea &&
+                <Card className="m-2 cardHome ">
+                    <Card.Title className="text-center shadow-3">{city[0].LocalizedName}</Card.Title>
                     <div className="d-flex">
-                        <Link selected={selected} to={`/${w.name}/${w.coord.lon}/${w.coord.lat}`}>
+                        <Link to={`/${city[0].LocalizedName}/${city[0].GeoPosition.Latitude}/${city[0].GeoPosition.Longitude}/${props.id}`} >
                             <div>
 
 
 
-                                <Card.Img src={`https://openweathermap.org/img/w/${w.weather[0].icon}.png`} />
+                                <Card.Img src={`https://developer.accuweather.com/sites/default/files/${wea.DailyForecasts[0].Day.Icon < 10 ? "0" + wea.DailyForecasts[0].Day.Icon : wea.DailyForecasts[0].Day.Icon}-s.png`} />
 
 
                             </div>
-                            <div>
+                            <div className="font-size">
 
                                 <Card.Body>
-                                    <Card.Text> {w.weather[0].description}</Card.Text>
-                                    <Card.Text> Temperatura :{(Math.trunc(w.main.temp - 273))}</Card.Text>
-                                    <Card.Text> Min : {(Math.trunc(w.main.temp_min - 273))}</Card.Text>
-                                    <Card.Text>Max : {(Math.trunc(w.main.temp_max - 273))}</Card.Text>
-                                    <Card.Text> Vento : {w.wind.speed} Km/h</Card.Text>
+                                    <Card.Text className="text-dark"> {wea.DailyForecasts[0].Day.IconPhrase}</Card.Text>
+
+                                    <Card.Text className="text-dark"> Min : {wea.DailyForecasts[0].Temperature.Minimum.Value}</Card.Text>
+                                    <Card.Text className="text-dark">Max : {wea.DailyForecasts[0].Temperature.Maximum.Value}</Card.Text>
+
 
                                 </Card.Body>
                             </div>
                         </Link>
-                        <Icon.StarFill onClick={(() => {
+                        {/* <Icon.StarFill onClick={(() => {
                             dispatch({
 
                                 type: "REMOVE",
                                 payload: index,
                             })
                             setSelected(false)
-                        })} ></Icon.StarFill>
+                        })} ></Icon.StarFill> */}
                     </div>
 
                 </Card >
 
-            )
-        })
+            }
 
+        </Col>
 
     )
 }

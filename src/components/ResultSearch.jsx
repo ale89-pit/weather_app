@@ -7,6 +7,7 @@ const ResultSearch = (props) => {
     ;
 
     return (
+
         <ListGroup key={props.key} className="d-flex w-xs-100 w-md-75 w-lg-75">
 
 
@@ -18,8 +19,8 @@ const ResultSearch = (props) => {
 
                     </div>
                     <div className="d-flex flex-column">
-                        <Badge className="bg-success">{props.city.Region.LocalizedName}</Badge>
-                        <Badge className="bg-danger">{props.city.Country.LocalizedName}</Badge>
+                        <Badge className="bg-success d-none d-md-block">{props.city.Region.LocalizedName}</Badge>
+                        <Badge className="bg-danger d-none d-md-block">{props.city.Country.LocalizedName}</Badge>
 
                     </div>
                     <div className="font-size d-flex ">
@@ -39,6 +40,8 @@ const ResultSearch = (props) => {
 
 
         </ListGroup >
+
+
     )
 }
 

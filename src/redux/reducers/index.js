@@ -2,12 +2,12 @@ const initialState = {
   weather: {
     content: [],
     loading: false,
-  }, preference:{
-    content:{
-      singlePreference:[],
-      selected : false,
-    }
-  }
+  },
+  preference: {
+    content: {
+      singlePreference: [],
+    },
+  },
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -20,25 +20,31 @@ const mainReducer = (state = initialState, action) => {
           loading: true,
         },
       };
-      case "ADD_PREF":
-        return{
-          ...state,
-          preference:{
-            content: {
-              singlePreference:[...state.preference.content.singlePreference,action.payload],
-              selected : true,}
-          }
-        };
-        case "REMOVE":
-          return {
-          ...state,
-          preference:{
-            content:{
-              singlePreference:[...state.preference.content.singlePreference.filter((el, i) => i !== action.payload)],
-              selected : false
-            },
-          }
-          }
+    case "ADD_PREF":
+      return {
+        ...state,
+        preference: {
+          content: {
+            singlePreference: [
+              ...state.preference.content.singlePreference,
+              action.payload,
+            ],
+          },
+        },
+      };
+    case "REMOVE":
+      return {
+        ...state,
+        preference: {
+          content: {
+            singlePreference: [
+              ...state.preference.content.singlePreference.filter(
+                (el, i) => el !== action.payload
+              ),
+            ],
+          },
+        },
+      };
     default:
       return state;
   }

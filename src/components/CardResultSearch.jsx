@@ -7,23 +7,26 @@ import { utcToZonedTime } from 'date-fns-tz';
 import { useParams } from "react-router-dom"
 import Forcast from "./Forcast"
 import ForcastHours from "./ForcastHours"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const CardResultSearch = ({ weather }) => {
     console.log(weather)
     const dispatch = useDispatch()
     const params = useParams()
+    const preference = useSelector((state) => state.preference.content.singlePreference)
+    console.log(preference)
     const name = params.nameCity
     const lat = params.lat
     const lon = params.lon
     const KEY = params.key
+
     const timezone = localStorage.getItem("timezone")
     let sunRise = new Date(utcToZonedTime(weather.Sun.Rise, timezone))
     let sunSet = new Date(utcToZonedTime(weather.Sun.Set, timezone))
     let moonRise = new Date(utcToZonedTime(weather.Moon.Rise, timezone))
     let moonSet = new Date(utcToZonedTime(weather.Moon.Set, timezone))
-    console.log(format(sunRise, "HH:mm", { timezone }))
+
 
     return (
         <>
@@ -106,16 +109,32 @@ const CardResultSearch = ({ weather }) => {
                 </div>
 
                 <Forcast lat={lat} lon={lon} id={KEY} />
-                <Button onClick={() => {
-                    dispatch({
+                {preference.includes(KEY) ?
+                    <Button variant="danger" onClick={(() => {
+                        dispatch({
 
-                        type: "ADD_PREF",
+                            type: "REMOVE",
 
-                        payload: KEY
+                            payload: KEY,
+
+                        })
+                        // setSelected(false)
+                    })}
+                    >Rimuovi dai preferiti</Button> :
+                    <Button onClick={() => {
+                        dispatch({
+
+                            type: "ADD_PREF",
+
+                            payload: KEY
 
 
-                    })
-                }}>Aggiungi ai preferiti</Button>
+                        })
+                    }}>Aggiungi ai preferiti</Button>
+
+
+
+                }
             </Container>
 
         </>

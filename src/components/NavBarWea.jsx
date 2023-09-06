@@ -117,7 +117,7 @@ const NavBarWea = () => {
                 value={query}
                 onChange={newString}
               />
-              <Button variant="outline-success" type="submit">Search</Button>
+              <Button variant="success" type="submit">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
