@@ -62,7 +62,7 @@ const PrefHome = (props) => {
 
     return (
 
-        <Col xs={12} sm={8} md={4} xl={2}>
+        <Col xs={12} sm={8} md={6} lg={4} xl={4} className="align-items-stretch">
 
             {!loadCity && !loadWea &&
                 <Card className="m-2 cardHome ">
