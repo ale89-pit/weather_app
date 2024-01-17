@@ -101,12 +101,12 @@ const Forcast = (props) => {
 
 
 
-                        <Card.Title className="p-3 text-center text-secondary opacity-50">{format(new Date(weaD.Date), "EEEE  dd MMMM yyyy")}</Card.Title>
+                        <Card.Title className="p-3 text-center text-secondary opacity-50">{format(new Date(weaD.Date), "EEEE  dd ")}</Card.Title>
                         <div className=" w-100 m-2">
                             <div>
-                                <p className="m-0 p-0">{weaD.Day.IconPhrase
+                                <p className="m-0 p-0 fw-bold text-secondary size-text-carousel ">{weaD.Day.IconPhrase
                                 }</p>
-                                <img className="w-50"
+                                <img className="w-auto "
 
                                     // src="https://developer.accuweather.com/sites/default/files/01-s.png"
                                     src={`https://developer.accuweather.com/sites/default/files/${weaD.Day.Icon < 10 ? "0" + weaD.Day.Icon : weaD.Day.Icon}-s.png`}
@@ -115,13 +115,13 @@ const Forcast = (props) => {
                             <div className=" font-weight-bold font-size">
                                 {/* {actual} */}
 
-                                <p className="m-0 p-0"><IoThermometerOutline /> Max:
+                                <p className="m-0 p-0 size-text-carousel"><IoThermometerOutline /> Max:
                                     {weaD.Temperature.Maximum.Value}°C
                                 </p>
-                                <p className="m-0 p-0"><IoThermometerOutline /> Min:
+                                <p className="m-0 p-0 size-text-carousel"><IoThermometerOutline /> Min:
                                     {weaD.Temperature.Minimum.Value}°C
                                 </p>
-                                <p className="m-0 p-0"><BiWind /> Wind:
+                                <p className="m-0 p-0 size-text-carousel"><BiWind /> Wind:
                                     {weaD.Day.Wind.Speed.Value} {weaD.Day.Wind.Speed.Unit}
                                     <FiCompass />
                                     {weaD.Day.Wind.Direction.Localized}
@@ -139,19 +139,19 @@ const Forcast = (props) => {
                         <div className=" m-2">
                             <div className="w-100 d-flex justify-content-center align-items-center">
 
-                                <img className=" mt-2 display-6"
+                                <img className=" mt-1 w-25"
 
                                     // src="https://developer.accuweather.com/sites/default/files/01-s.png"
                                     src={`https://developer.accuweather.com/sites/default/files/01-s.png`}
                                 />
 
                                 <div className="d-flex flex-column font-size text-secondary">
-                                    <span className="w-100">Sorge : {format(utcToZonedTime(new Date(weaD.Sun.Rise), timezone), "HH:mm")}
+                                    <p className="w-100 size-text-carousel m-0 p-0">Sorge : {format(utcToZonedTime(new Date(weaD.Sun.Rise), timezone), "HH:mm")}
 
-                                    </span>
-                                    <span>Tramonta :  {format(utcToZonedTime(new Date(weaD.Sun.Set), timezone), "HH:mm")}
+                                    </p>
+                                    <p className="w-100 size-text-carousel m-0 p-0">Tramonta :  {format(utcToZonedTime(new Date(weaD.Sun.Set), timezone), "HH:mm")}
 
-                                    </span>
+                                    </p>
                                 </div>
                             </div>
                             <div className="w-100 d-flex justify-content-center align-items-center">
@@ -161,13 +161,13 @@ const Forcast = (props) => {
                                     src={`https://developer.accuweather.com/sites/default/files/33-s.png`}
                                 />
                                 <div className="d-flex flex-column font-size text-secondary">
-                                    <span>Sorge :
+                                    <p className="w-100 size-text-carousel m-0 p-0">Sorge :
                                         {format(utcToZonedTime(new Date(weaD.Moon.Rise), timezone), "HH:mm")}
                                         {/* format(new Date(weaD.Moon.Rise), "HH:mm")} */}
-                                    </span>
-                                    <span>Tramonta :
+                                    </p>
+                                    <p className="w-100 size-text-carousel m-0 p-0">Tramonta :
                                         {format(utcToZonedTime(new Date(weaD.Moon.Set), timezone), "HH:mm")}
-                                    </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -66,7 +66,7 @@ const PrefHome = (props) => {
 
             {!loadCity && !loadWea &&
                 <Card className="m-2 cardHome ">
-                    <p className="align-self-center mx-auto shadow-3">{city[0].LocalizedName}</p>
+                    <h3 className="align-self-center mx-auto shadow-3">{city[0].LocalizedName}</h3>
                     <div className="d-flex justify-content-center align-items-center">
                         <Link to={`/${city[0].LocalizedName}/${city[0].GeoPosition.Latitude}/${city[0].GeoPosition.Longitude}/${props.id}`} >
                             <div className="d-flex justify-content-center align-items-center">

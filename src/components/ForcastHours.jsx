@@ -41,12 +41,12 @@ const ForcastHours = () => {
     }, [])
 
     return (
-        <div className="overflow-scroll max-height">
-            <ListGroup  >
+        <div className="overflow-scroll m-0  max-height" id="forcasthours">
+            <ListGroup className="border">
                 {!loading &&
                     hourForcast.map((hour, i) => {
                         return (
-                            <ListGroup.Item>
+                            <ListGroup.Item className="m-0 p-2">
                                 <div className="d-flex justify-content-between align-items-center m-0">
                                     <div className="m-0 p-0">
                                         <p className="p-0 m-0">{format(utcToZonedTime(new Date(hour.DateTime), timezone), "HH:mm")}</p>

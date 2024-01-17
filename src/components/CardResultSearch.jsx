@@ -31,24 +31,27 @@ const CardResultSearch = ({ weather }) => {
 
     return (
         <>
-            <Container className=" mx-auto my-4 bg-light rounded p-3 border border-3 overflow-hidden">
-                <Card.Title className="text-center display-5 my-2">{name}</Card.Title>
+            <Card className=" mx-auto my-4 content   bg-light rounded p-3 border  overflow-hidden">
+                <Card.Title className="text-center display-5 my-2 ">{name}</Card.Title>
 
 
 
 
                 <Card.Title className="p-3 text-center text-secondary opacity-50">{format(new Date(weather.Date), "EEEE  dd MMMM yyyy")}</Card.Title>
                 <Row className="d-flex ">
+
                     <Col xs={12} md={4} className="d-flex flex-column justify-content-center align-items-center mx-auto">
-                        <p className="align-self-center fs-3 shadow-3">{weather.Day.IconPhrase}</p>
-                        <div className="d-flex justify-content-center align-items-start">
+
+                        <div>
+                            <p className="align-self-center fs-3 shadow-3">{weather.Day.IconPhrase}</p>
                             <img className="w-100 mt-2"
 
                                 // src="https://developer.accuweather.com/sites/default/files/01-s.png"
                                 src={`https://developer.accuweather.com/sites/default/files/${weather.Day.Icon < 10 ? "0" + weather.Day.Icon : weather.Day.Icon}-s.png`}
                             />
-
-                            <div className="w-100 font-size align-self-end">
+                        </div>
+                        <div className="d-flex  justify-content-center align-items-start ">
+                            <div className="w-100 d-flex  font-size align-self-end">
                                 {/* {actual} */}
 
                                 <p><IoThermometerOutline /> Max:
@@ -66,48 +69,48 @@ const CardResultSearch = ({ weather }) => {
                             </div>
                         </div>
 
+                        <div className="w-100 d-flex justify-content-center align-items-center ">
+                            <div className="w-100 d-flex justify-content-center align-items-center">
 
+                                <img className=" mt-2"
+
+                                    // src="https://developer.accuweather.com/sites/default/files/01-s.png"
+                                    src={`https://developer.accuweather.com/sites/default/files/01-s.png`}
+                                />
+
+                                <div className="d-flex gap-2 font-size text-secondary">
+                                    <span>
+                                        Sorge {(sunRise !== null) ? format(sunRise, "HH:mm", { timezone }) : ""}
+                                        {/* Rise {format(new Date(weather.Sun.EpochRise), "HH:mm")} */}
+                                    </span>
+                                    <br />
+                                    <span>Tramonta {(sunSet !== null) ? format(sunSet, "HH:mm", { timezone }) : ""}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="w-100 d-flex justify-content-center align-items-center">
+
+                                <img className=" mt-2"
+                                    // src="https://developer.accuweather.com/sites/default/files/34-s.png"
+                                    src={`https://developer.accuweather.com/sites/default/files/33-s.png`}
+                                />
+                                <div className="d-flex gap-2 font-size text-secondary">
+                                    <span>Sorge {moonRise !== null ? format(moonRise, "HH:mm", { timezone }) : ""}
+                                    </span>
+                                    <br />
+                                    <span>Tramonta: {moonSet !== null ? format(moonSet, "HH:mm", { timezone }) : ""}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
                     </Col>
-                    <Col xs={12} md={7} >
+                    <Col xs={12} md={7} className="p-0 m-0">
                         <ForcastHours />
                     </Col>
                 </Row>
 
-                <div className="w-100 d-flex justify-content-center align-items-center ">
-                    <div className="w-100 d-flex justify-content-center align-items-center">
 
-                        <img className=" mt-2"
-
-                            // src="https://developer.accuweather.com/sites/default/files/01-s.png"
-                            src={`https://developer.accuweather.com/sites/default/files/01-s.png`}
-                        />
-
-                        <div className="d-flex gap-2 font-size text-secondary">
-                            <span>
-                                Sorge {(sunRise !== null) ? format(sunRise, "HH:mm", { timezone }) : ""}
-                                {/* Rise {format(new Date(weather.Sun.EpochRise), "HH:mm")} */}
-                            </span>
-                            <br />
-                            <span>Tramonta {(sunSet !== null) ? format(sunSet, "HH:mm", { timezone }) : ""}
-                            </span>
-                        </div>
-                    </div>
-                    <div className="w-100 d-flex justify-content-center align-items-center">
-
-                        <img className=" mt-2"
-                            // src="https://developer.accuweather.com/sites/default/files/34-s.png"
-                            src={`https://developer.accuweather.com/sites/default/files/33-s.png`}
-                        />
-                        <div className="d-flex gap-2 font-size text-secondary">
-                            <span>Sorge {moonRise !== null ? format(moonRise, "HH:mm", { timezone }) : ""}
-                            </span>
-                            <br />
-                            <span>Tramonta: {moonSet !== null ? format(moonSet, "HH:mm", { timezone }) : ""}
-                            </span>
-                        </div>
-                    </div>
-                </div>
 
                 <Forcast lat={lat} lon={lon} id={KEY} />
                 {preference.includes(KEY) ?
@@ -136,7 +139,7 @@ const CardResultSearch = ({ weather }) => {
 
 
                 }
-            </Container>
+            </Card>
 
         </>
     )

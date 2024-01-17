@@ -67,10 +67,27 @@ a:active {
 }
 
 .max-height {
-  max-height: 300px;
+  max-height: 250px;
   margin-bottom: 10%;
 }
 
 .max-height-prefer {
   max-height: 150px;
+}
+
+#forcasthours::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+#forcasthours::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 0.5em;
+}
+
+.content {
+  max-height: 100vh;
+}
+
+.size-text-carousel {
+  font-size: 0.7em;
 }/*# sourceMappingURL=App.css.map */

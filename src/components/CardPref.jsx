@@ -24,7 +24,7 @@ const CardPref = () => {
 
 
     return (<>
-        <h2 className='text-center display-1'>Preferiti</h2>
+        <h2 className='text-center display-1 fw-bold'>Preferiti</h2>
         <Container >
             <Row >
 

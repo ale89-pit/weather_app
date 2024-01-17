@@ -8,19 +8,21 @@ import WeatherShow from "./components/WeatherShow";
 import NameCity from "./components/NameCity";
 import CardPref from "./components/CardPref";
 import Preference from "./components/Preference";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <BrowserRouter>
       <NavBarWea />
-
-      <Routes>
-        <Route path="/" element={<WeatherShow />} />
-        <Route path="/:nameCity/:lat/:lon/:key" element={<NameCity />} />
-      </Routes>
-      <Routes>
-        <Route path="/" element={<CardPref />} />
-      </Routes>
+      <Container className="content">
+        <Routes>
+          <Route path="/" element={<WeatherShow />} />
+          <Route path="/:nameCity/:lat/:lon/:key" element={<NameCity />} />
+        </Routes>
+        <Routes>
+          <Route path="/" element={<CardPref />} />
+        </Routes>
+      </Container>
     </BrowserRouter>
   );
 }
