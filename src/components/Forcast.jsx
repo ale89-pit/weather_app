@@ -102,10 +102,10 @@ const Forcast = (props) => {
 
 
                         <Card.Title className="p-3 text-center text-secondary opacity-50">{format(new Date(weaD.Date), "EEEE  dd ")}</Card.Title>
-                        <div className=" w-100 m-2">
+                        <div className=" w-100 m-0">
                             <div>
-                                <p className="m-0 p-0 fw-bold text-secondary size-text-carousel ">{weaD.Day.IconPhrase
-                                }</p>
+                                {/* <p className="m-0 p-0 fw-bold text-secondary size-text-carousel ">{weaD.Day.IconPhrase
+                                }</p> */}
                                 <img className="w-auto "
 
                                     // src="https://developer.accuweather.com/sites/default/files/01-s.png"

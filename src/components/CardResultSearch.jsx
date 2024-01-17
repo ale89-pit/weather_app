@@ -31,7 +31,7 @@ const CardResultSearch = ({ weather }) => {
 
     return (
         <>
-            <Card className=" mx-auto my-4 content   bg-light rounded p-3 border  overflow-hidden">
+            <Card className=" mx-auto my-4 bg-light rounded p-3 border  overflow-hidden">
                 <Card.Title className="text-center display-5 my-2 ">{name}</Card.Title>
 
 
@@ -51,7 +51,7 @@ const CardResultSearch = ({ weather }) => {
                             />
                         </div>
                         <div className="d-flex  justify-content-center align-items-start ">
-                            <div className="w-100 d-flex  font-size align-self-end">
+                            <div className="w-100  font-size align-self-end">
                                 {/* {actual} */}
 
                                 <p><IoThermometerOutline /> Max:
@@ -72,12 +72,12 @@ const CardResultSearch = ({ weather }) => {
                         <div className="w-100 d-flex justify-content-center align-items-center ">
                             <div className="w-100 d-flex justify-content-center align-items-center">
 
+
                                 <img className=" mt-2"
 
                                     // src="https://developer.accuweather.com/sites/default/files/01-s.png"
                                     src={`https://developer.accuweather.com/sites/default/files/01-s.png`}
                                 />
-
                                 <div className="d-flex gap-2 font-size text-secondary">
                                     <span>
                                         Sorge {(sunRise !== null) ? format(sunRise, "HH:mm", { timezone }) : ""}
